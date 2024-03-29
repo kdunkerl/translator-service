@@ -1,8 +1,5 @@
-from typing import Callable
-import vertexai
+from google.cloud import aiplatform
 from vertexai.language_models import ChatModel, InputOutputTextPair
-
-chat_model = ChatModel.from_pretrained("chat-bison@001")
 
 def get_translation(post: str) -> str:
     parameters = {
@@ -13,6 +10,7 @@ def get_translation(post: str) -> str:
     any language into English. Please only give the translation for the 
     phrase you are given. If it is in English, repeat the given phrase. If 
     you are unable to translate, please say "I can't translate"'''
+    chat_model = ChatModel.from_pretrained("chat-bison@001")
     chat = chat_model.start_chat(context=context)
     response = chat.send_message(post, **parameters)
     return response.text
@@ -26,6 +24,7 @@ def get_language(post: str) -> str:
     including every English dialect. Use one or two words to 
     classify the language used, in English. If you are unable 
     to classify the language, please say "I can't classify"'''
+    chat_model = ChatModel.from_pretrained("chat-bison@001")
     chat = chat_model.start_chat(context=context)
     response = chat.send_message(post, **parameters)
     return response.text
