@@ -1,4 +1,5 @@
 from typing import Callable
+import vertexai
 from vertexai.language_models import ChatModel, InputOutputTextPair
 
 chat_model = ChatModel.from_pretrained("chat-bison@001")
