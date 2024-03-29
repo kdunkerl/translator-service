@@ -1,4 +1,3 @@
-from google.cloud import aiplatform
 from vertexai.language_models import ChatModel, InputOutputTextPair
 
 def get_translation(post: str) -> str:
