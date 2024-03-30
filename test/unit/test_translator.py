@@ -34,3 +34,14 @@ def test_llm_gibberish_response(mocker):
     is_english, translated_content = translate_content("hfdu skdasd fndkosa")
     assert is_english == True
     assert translated_content == "hfdu skdasd fndkosa"
+
+@patch('vertexai.preview.language_models._PreviewChatSession.send_message')
+def test_not_a_string_response(mocker):
+  mocker.return_value.text = []
+  assert translate_content("Aquí está su primer ejemplo.") == (False, "Here is your first example.")
+
+@patch('vertexai.preview.language_models._PreviewChatSession.send_message')
+def test_empty_response(mocker):
+  mocker.return_value.text = ""
+  assert translate_content("Aquí está su primer ejemplo.") == (False, "Here is your first example.")
+  assert translate_content("hfdu skdasd fndkosa") == (True, "hfdu skdasd fndkosa")
