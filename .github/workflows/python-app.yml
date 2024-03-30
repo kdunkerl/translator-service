@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        key: ${{secrets.G_API_KEY}}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
